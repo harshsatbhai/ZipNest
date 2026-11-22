@@ -35,7 +35,7 @@ zipnest/
 
 | OS | Install |
 |---|---|
-| all | [Rust](https://rustup.rs) (stable) and [Node.js](https://nodejs.org) 20+ |
+| all | [Rust](https://rustup.rs) (stable) and [Node.js](https://nodejs.org) 24 LTS (20+ works) |
 | macOS | `xcode-select --install` |
 | Windows | [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) with "Desktop development with C++". WebView2 is preinstalled on Windows 10/11. |
 | Debian/Ubuntu | `sudo apt install libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf build-essential` |
@@ -65,7 +65,7 @@ npm run tauri build      # output: target/release/bundle/
 
 You can't build a macOS app on Windows (or the other way round), so GitHub Actions builds all three on real Windows, macOS and Linux machines.
 
-1. Push this project to a GitHub repo, for example `yourname/zipnest`.
+1. Push this project to https://github.com/harshsatbhai/ZipNest.
 2. Set the version in **`app/src-tauri/tauri.conf.json`** (and optionally `Cargo.toml` / `app/package.json`).
 3. Tag and push:
    ```bash
@@ -90,9 +90,9 @@ You can't build a macOS app on Windows (or the other way round), so GitHub Actio
 
 ## 3 · Deploy the website on Render
 
-1. Edit **`website/config.js`** and set `repo: "yourname/zipnest"`. Until you do, download buttons show a "not configured" message instead of broken links. Also update the URL in `website/.well-known/security.txt`.
+1. `website/config.js` is already set to `repo: "harshsatbhai/ZipNest"`. If you rename or move the repo, update it there and in `website/.well-known/security.txt`.
 2. Commit and push to `main`.
-3. In Render: **New → Blueprint**, then pick your repo. Render reads `render.yaml` and creates a free static site called `zipnest`, published at `https://zipnest.onrender.com` (or a similar name if that one is taken).
+3. In Render: **New → Blueprint**, then pick your repo. Render reads `render.yaml` and creates a free static site called `zipnest`, published at **https://zipnest.onrender.com**.
 4. Optional: **Settings → Custom Domains** to add e.g. `zipnest.app`. Render issues the HTTPS certificate automatically.
 
 The site auto-deploys only when `website/**` or `render.yaml` change.
@@ -135,4 +135,4 @@ Unsigned builds work, but Windows SmartScreen and macOS Gatekeeper show a warnin
 
 ## License
 
-MIT © ZipNest Contributors
+MIT © 2026 [Harsh Satbhai](https://github.com/harshsatbhai). Created by Harsh Satbhai.

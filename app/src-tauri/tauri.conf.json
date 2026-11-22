@@ -31,8 +31,8 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "publisher": "ZipNest",
-    "copyright": "© 2026 ZipNest Contributors. MIT License.",
+    "publisher": "Harsh Satbhai",
+    "copyright": "© 2026 Harsh Satbhai. MIT License.",
     "category": "Utility",
     "shortDescription": "Zip and unzip files and project folders, 100% offline.",
     "longDescription": "ZipNest compresses and extracts files and entire codebases on your own computer. It respects .gitignore, skips node_modules and other junk, supports AES-256 password protection, and blocks unsafe archives. No account, no telemetry, no internet required.",
