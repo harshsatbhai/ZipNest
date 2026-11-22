@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────────────────────
 window.ZIPNEST_CONFIG = Object.freeze({
   // GitHub "owner/repo" that hosts the releases (installers are attached to GitHub Releases).
-  repo: "YOUR_GITHUB_USERNAME/zipnest",
+  repo: "harshsatbhai/ZipNest",
 
   // Shown until the live version is fetched from GitHub (and if GitHub is unreachable).
   fallbackVersion: "1.0.0",
