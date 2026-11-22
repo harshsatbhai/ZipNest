@@ -339,3 +339,30 @@ fn preserves_executable_bit() {
         .mode();
     assert_eq!(mode & 0o777, 0o755);
 }
+
+#[test]
+fn extracts_zstd_archives() {
+    let tmp = tempfile::tempdir().unwrap();
+    let p = tmp.path().join("zstd.zip");
+    {
+        let f = fs::File::create(&p).unwrap();
+        let mut z = zip::ZipWriter::new(f);
+        let o = zip::write::SimpleFileOptions::default()
+            .compression_method(zip::CompressionMethod::Zstd);
+        z.start_file("data/hello.txt", o).unwrap();
+        z.write_all("hello zstd ".repeat(1000).as_bytes()).unwrap();
+        z.finish().unwrap();
+    }
+    let r = extract(
+        &p,
+        &tmp.path().join("o"),
+        &ExtractOptions::default(),
+        &CancelToken::new(),
+        &mut noop(),
+    )
+    .unwrap();
+    assert_eq!(
+        fs::read_to_string(r.output_dir.join("hello.txt")).unwrap(),
+        "hello zstd ".repeat(1000)
+    );
+}

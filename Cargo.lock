@@ -2253,16 +2253,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "libzstd-rs-sys"
-version = "0.0.1-prerelease.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3d32cb930247d5359c4229b1a4c9244536a5402c9e9ed86451803450a47b25c"
-dependencies = [
- "cc",
- "libc",
-]
-
-[[package]]
 name = "link-section"
 version = "0.19.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5451,7 +5441,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f729a06d0257428fd9d997ac8db7e1407bd0262ab016b085b36bc52957c0052d"
 dependencies = [
  "cc",
- "libzstd-rs-sys",
  "pkg-config",
 ]
 
