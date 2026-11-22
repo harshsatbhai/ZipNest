@@ -1,0 +1,157 @@
+# Builds ZipNest installers for Windows, macOS and Linux and publishes them
+# to a GitHub Release. Trigger: push a tag like `v1.0.0`.
+#
+#   git tag v1.0.0 && git push origin v1.0.0
+#
+# The website links to /releases/latest/download/<stable file name>, so the
+# file names below must match website/config.js.
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch: # manual run = build only (artifacts), no release
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            rust_targets: x86_64-pc-windows-msvc
+            bundles: nsis
+          - name: macOS
+            os: macos-latest
+            target: universal-apple-darwin
+            rust_targets: aarch64-apple-darwin,x86_64-apple-darwin
+            bundles: dmg
+          - name: Linux
+            # Oldest supported Ubuntu = widest glibc compatibility for the .deb/AppImage.
+            os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+            rust_targets: x86_64-unknown-linux-gnu
+            bundles: deb,appimage
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag matches app version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          APP=$(node -p "require('./app/src-tauri/tauri.conf.json').version")
+          TAG="${GITHUB_REF_NAME#v}"
+          if [ "$APP" != "$TAG" ]; then
+            echo "::error::Tag v$TAG does not match version $APP in app/src-tauri/tauri.conf.json"
+            exit 1
+          fi
+
+      - name: Install Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust_targets }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Test zip engine
+        run: cargo test -p zipnest-core --locked
+
+      - name: Install frontend dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Build installers
+        working-directory: app
+        shell: bash
+        env:
+          # Optional code signing. Add these as repository secrets to sign;
+          # leave them unset to build unsigned installers.
+          SECRET_APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          SECRET_APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          SECRET_APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          SECRET_APPLE_ID: ${{ secrets.APPLE_ID }}
+          SECRET_APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          SECRET_APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          if [ "${{ runner.os }}" = "macOS" ] && [ -n "$SECRET_APPLE_CERTIFICATE" ]; then
+            echo "Signing & notarizing macOS build"
+            export APPLE_CERTIFICATE="$SECRET_APPLE_CERTIFICATE"
+            export APPLE_CERTIFICATE_PASSWORD="$SECRET_APPLE_CERTIFICATE_PASSWORD"
+            export APPLE_SIGNING_IDENTITY="$SECRET_APPLE_SIGNING_IDENTITY"
+            export APPLE_ID="$SECRET_APPLE_ID"
+            export APPLE_PASSWORD="$SECRET_APPLE_PASSWORD"
+            export APPLE_TEAM_ID="$SECRET_APPLE_TEAM_ID"
+          fi
+          npx tauri build --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+
+      - name: Collect installers (stable file names)
+        shell: bash
+        run: |
+          set -euo pipefail
+          B="target/${{ matrix.target }}/release/bundle"
+          mkdir -p release-files
+          case "${{ runner.os }}" in
+            Windows)
+              cp "$B"/nsis/*-setup.exe release-files/ZipNest-windows-x64-setup.exe ;;
+            macOS)
+              cp "$B"/dmg/*.dmg release-files/ZipNest-macos-universal.dmg ;;
+            Linux)
+              cp "$B"/deb/*.deb release-files/ZipNest-linux-amd64.deb
+              cp "$B"/appimage/*.AppImage release-files/ZipNest-linux-x86_64.AppImage ;;
+          esac
+          ls -la release-files
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ matrix.name }}
+          path: release-files/*
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          pattern: installers-*
+          merge-multiple: true
+
+      - name: Generate SHA-256 checksums
+        working-directory: out
+        run: |
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: ZipNest ${{ github.ref_name }}
+          files: out/*
+          generate_release_notes: true
+          make_latest: true

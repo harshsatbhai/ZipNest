@@ -1,0 +1,18 @@
+[package]
+name = "zipnest-core"
+description = "Offline, safe zip/unzip engine used by the ZipNest desktop app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+zip = { version = "9", default-features = false, features = ["deflate-flate2-zlib-rs", "aes-crypto", "time", "bzip2-rs", "lzma", "zstd-rs"] }
+ignore = "0.4"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+time = { version = "0.3", features = ["local-offset"] }
+
+[dev-dependencies]
+tempfile = "3"
+zip = { version = "9", default-features = false, features = ["deflate-flate2-zlib-rs"] }

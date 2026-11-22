@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZipNest: zip &amp; unzip files and project folders, 100% offline</title>
+    <meta
+      name="description"
+      content="ZipNest is a free, open-source desktop app for Windows, macOS and Linux that compresses and extracts files and entire codebases completely offline. Respects .gitignore, AES-256 passwords, safe extraction."
+    />
+    <meta name="theme-color" content="#f0702f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ZipNest: zip & unzip anything, 100% offline" />
+    <meta property="og:description" content="Free desktop app for Windows, macOS & Linux. Your files never leave your computer." />
+    <meta property="og:image" content="/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icon-180.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/config.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a href="/" class="brand" aria-label="ZipNest home">
+          <img src="/assets/logo.svg" width="32" height="32" alt="" />
+          <span>ZipNest</span>
+        </a>
+        <nav aria-label="Main">
+          <a href="#features">Features</a>
+          <a href="#download">Download</a>
+          <a href="#install">Install</a>
+          <a href="#security">Security</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn btn-small btn-outline js-repo-link" href="https://github.com/" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          Source
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="dot"></span> Free &amp; open source · No account · No internet</p>
+            <h1>Zip and unzip anything.<br /><span class="grad">Completely offline.</span></h1>
+            <p class="lead">
+              ZipNest packs files and entire project folders into clean ZIP archives, and unpacks them safely, right on
+              your computer. It skips <code>node_modules</code>, respects <code>.gitignore</code>, and never uploads a byte.
+            </p>
+            <div class="cta">
+              <a class="btn btn-primary btn-large js-primary-download" href="#download">
+                <span class="js-os-icon" aria-hidden="true"></span>
+                <span class="js-primary-label">Download ZipNest</span>
+              </a>
+              <a class="btn btn-ghost btn-large" href="#download">All platforms</a>
+            </div>
+            <p class="cta-meta">
+              <span class="js-version">v1.0.0</span> · Windows 10+, macOS 10.15+, Ubuntu/Debian · ~4 MB
+            </p>
+          </div>
+          <div class="hero-shot">
+            <div class="window">
+              <div class="window-bar"><span></span><span></span><span></span></div>
+              <img
+                src="/assets/screenshot.png"
+                width="1000"
+                height="680"
+                alt="The ZipNest app showing an archive's contents, a safety check badge and the Extract button"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST STRIP -->
+      <section class="strip" aria-label="Highlights">
+        <div class="wrap strip-inner">
+          <div><strong>0</strong><span>network requests</span></div>
+          <div><strong>AES-256</strong><span>password protection</span></div>
+          <div><strong>Zip64</strong><span>files over 4 GB</span></div>
+          <div><strong>Rust</strong><span>fast, memory-safe core</span></div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section id="features" class="section">
+        <div class="wrap">
+          <p class="kicker">Features</p>
+          <h2>Everything you need. Nothing that phones home.</h2>
+          <div class="grid features">
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 2l20 20M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5.2-2.8M19 13a10 10 0 0 0-2-1.5M2 8.8a15 15 0 0 1 4.2-2.7M22 8.8A15 15 0 0 0 10.7 5M12 20h.01"/></svg></div>
+              <h3>100% offline</h3>
+              <p>Works on a plane, in a bunker, or on an air-gapped machine. No sign-in, no cloud, no telemetry, ever.</p>
+            </article>
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+              <h3>Built for codebases</h3>
+              <p>Honours <code>.gitignore</code> and skips <code>node_modules</code>, <code>.git</code>, <code>__pycache__</code>, <code>.venv</code> and other junk, so you share source, not gigabytes.</p>
+            </article>
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+              <h3>Password protection</h3>
+              <p>Encrypt archives with AES-256, the strongest standard ZIP supports, compatible with 7-Zip, WinRAR and more.</p>
+            </article>
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <h3>Safe extraction</h3>
+              <p>Every archive is checked first. Path-traversal tricks, sneaky symlinks and zip bombs are blocked before anything touches your disk.</p>
+            </article>
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></div>
+              <h3>Fast &amp; streaming</h3>
+              <p>A Rust engine streams data in chunks, so multi-gigabyte folders don't eat your RAM. Already-compressed media is stored, not re-squeezed.</p>
+            </article>
+            <article class="card">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 8v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8"/><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M10 12h4"/></svg></div>
+              <h3>Never overwrites</h3>
+              <p>Extracts into a fresh folder by default, writes ZIPs atomically, and cleans up if you cancel. Your existing files stay untouched.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOWNLOAD -->
+      <section id="download" class="section alt">
+        <div class="wrap">
+          <p class="kicker">Download</p>
+          <h2>Get ZipNest for your computer</h2>
+          <p class="sub">Free forever. Version <span class="js-version">1.0.0</span>. <a class="js-notes-link" href="#">Release notes</a></p>
+
+          <p class="mobile-note" hidden>ZipNest is a desktop app. Open this page on your Windows, Mac or Linux computer to download it.</p>
+
+          <div class="grid downloads">
+            <article class="dl-card" data-os="windows">
+              <span class="rec">Recommended for you</span>
+              <div class="os-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8M12 18v3"/></svg>
+              </div>
+              <h3>Windows</h3>
+              <p class="muted">Windows 10 &amp; 11 · 64-bit</p>
+              <a class="btn btn-primary js-dl" data-asset="windows" href="#">Download .exe installer</a>
+              <ul class="specs">
+                <li>Installs for your user only, no admin needed</li>
+                <li>Uninstall from Settings → Apps</li>
+              </ul>
+            </article>
+
+            <article class="dl-card" data-os="macos">
+              <span class="rec">Recommended for you</span>
+              <div class="os-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-1.5-4h-17Z"/></svg>
+              </div>
+              <h3>macOS</h3>
+              <p class="muted">macOS 10.15+ · Apple Silicon &amp; Intel</p>
+              <a class="btn btn-primary js-dl" data-asset="macos" href="#">Download .dmg</a>
+              <ul class="specs">
+                <li>One universal app for every Mac</li>
+                <li>Uninstall: drag to Trash</li>
+              </ul>
+            </article>
+
+            <article class="dl-card" data-os="linux">
+              <span class="rec">Recommended for you</span>
+              <div class="os-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></svg>
+              </div>
+              <h3>Linux</h3>
+              <p class="muted">Ubuntu, Debian, Mint, Pop!_OS · x86-64</p>
+              <a class="btn btn-primary js-dl" data-asset="deb" href="#">Download .deb</a>
+              <a class="btn btn-outline js-dl" data-asset="appimage" href="#">AppImage (any distro)</a>
+              <ul class="specs">
+                <li>Uninstall: <code>sudo apt remove zip-nest</code></li>
+              </ul>
+            </article>
+          </div>
+
+          <p class="verify-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+            Every release is built automatically from public source code by GitHub Actions.
+            <a class="js-dl" data-asset="checksums" href="#">SHA-256 checksums</a> ·
+            <a href="#verify">How to verify</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- INSTALL -->
+      <section id="install" class="section">
+        <div class="wrap narrow">
+          <p class="kicker">Install &amp; uninstall</p>
+          <h2>Up and running in a minute</h2>
+
+          <div class="tabs" role="tablist" aria-label="Operating system">
+            <button role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="true" data-tab="windows">Windows</button>
+            <button role="tab" id="tab-macos" aria-controls="panel-macos" aria-selected="false" data-tab="macos">macOS</button>
+            <button role="tab" id="tab-linux" aria-controls="panel-linux" aria-selected="false" data-tab="linux">Linux</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-windows" aria-labelledby="tab-windows">
+            <div class="two-col">
+              <div>
+                <h3>Install</h3>
+                <ol class="steps">
+                  <li>Download <code>ZipNest-windows-x64-setup.exe</code>.</li>
+                  <li>Double-click it and follow the installer. No administrator rights required.</li>
+                  <li>If Windows SmartScreen shows <em>“Windows protected your PC”</em>, click <strong>More info → Run anyway</strong>. This appears for new apps that aren't code-signed yet.</li>
+                  <li>Launch ZipNest from the Start menu.</li>
+                </ol>
+              </div>
+              <div>
+                <h3>Uninstall</h3>
+                <ol class="steps">
+                  <li>Open <strong>Settings → Apps → Installed apps</strong>.</li>
+                  <li>Find <strong>ZipNest</strong>, click <strong>⋯ → Uninstall</strong>.</li>
+                </ol>
+                <p class="muted">The uninstaller removes the app, its shortcuts and its registry entries. Your ZIP files are never touched.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-macos" aria-labelledby="tab-macos" hidden>
+            <div class="two-col">
+              <div>
+                <h3>Install</h3>
+                <ol class="steps">
+                  <li>Download <code>ZipNest-macos-universal.dmg</code> and open it.</li>
+                  <li>Drag <strong>ZipNest</strong> into the <strong>Applications</strong> folder.</li>
+                  <li>First launch: if macOS says the developer can't be verified, <strong>right-click ZipNest → Open → Open</strong>. On macOS 15+, use <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>.</li>
+                </ol>
+              </div>
+              <div>
+                <h3>Uninstall</h3>
+                <ol class="steps">
+                  <li>Quit ZipNest.</li>
+                  <li>Drag <strong>ZipNest</strong> from Applications to the Trash.</li>
+                </ol>
+                <p class="muted">Optional full clean-up (window size cache only):</p>
+                <div class="code"><code>rm -rf ~/Library/WebKit/app.zipnest.desktop ~/Library/Caches/app.zipnest.desktop</code><button class="copy" type="button">Copy</button></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-linux" aria-labelledby="tab-linux" hidden>
+            <div class="two-col">
+              <div>
+                <h3>Install (.deb)</h3>
+                <div class="code"><code>sudo apt install ./ZipNest-linux-amd64.deb</code><button class="copy" type="button">Copy</button></div>
+                <p class="muted">ZipNest then appears in your app menu and in “Open with” for .zip files.</p>
+                <h3>AppImage (any distro)</h3>
+                <div class="code"><code>chmod +x ZipNest-linux-x86_64.AppImage &amp;&amp; ./ZipNest-linux-x86_64.AppImage</code><button class="copy" type="button">Copy</button></div>
+              </div>
+              <div>
+                <h3>Uninstall</h3>
+                <div class="code"><code>sudo apt remove zip-nest</code><button class="copy" type="button">Copy</button></div>
+                <p class="muted">For the AppImage, just delete the file.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECURITY -->
+      <section id="security" class="section alt">
+        <div class="wrap">
+          <p class="kicker">Security &amp; privacy</p>
+          <h2>Your files never leave your computer</h2>
+          <div class="grid sec">
+            <div class="sec-item">
+              <h3>No network access</h3>
+              <p>The app contains no networking code and its sandbox permissions don't allow any. Compression and extraction happen entirely on your machine.</p>
+            </div>
+            <div class="sec-item">
+              <h3>Locked-down by design</h3>
+              <p>Built on Tauri with a strict content-security policy and minimal permissions: the interface can only ask the Rust core to zip, unzip or open a file picker.</p>
+            </div>
+            <div class="sec-item">
+              <h3>Defends against bad archives</h3>
+              <p>Blocks “zip-slip” path traversal, refuses to create symlinks, sanitises file names, and stops zip bombs that claim to expand to absurd sizes.</p>
+            </div>
+            <div class="sec-item">
+              <h3>Open &amp; reproducible</h3>
+              <p>All source code is public. Installers are built by GitHub Actions straight from tagged source, with published SHA-256 checksums.</p>
+            </div>
+          </div>
+
+          <div id="verify" class="verify">
+            <h3>Verify your download</h3>
+            <p class="muted">Compare the output with the matching line in <a class="js-dl" data-asset="checksums" href="#">SHA256SUMS.txt</a>.</p>
+            <div class="verify-grid">
+              <div><span class="label">Windows (PowerShell)</span><div class="code"><code>Get-FileHash .\ZipNest-windows-x64-setup.exe</code><button class="copy" type="button">Copy</button></div></div>
+              <div><span class="label">macOS</span><div class="code"><code>shasum -a 256 ZipNest-macos-universal.dmg</code><button class="copy" type="button">Copy</button></div></div>
+              <div><span class="label">Linux</span><div class="code"><code>sha256sum ZipNest-linux-amd64.deb</code><button class="copy" type="button">Copy</button></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section">
+        <div class="wrap narrow">
+          <p class="kicker">FAQ</p>
+          <h2>Questions, answered</h2>
+          <details>
+            <summary>Is ZipNest really free?</summary>
+            <p>Yes. ZipNest is free and open source under the MIT license. There are no ads, trials or paid tiers.</p>
+          </details>
+          <details>
+            <summary>Does it need the internet?</summary>
+            <p>Only to download the installer from this page. After that ZipNest works completely offline. (On a very old Windows 10 PC without Microsoft Edge WebView2, the installer fetches that system component once. Windows 11 already includes it.)</p>
+          </details>
+          <details>
+            <summary>Which archive formats are supported?</summary>
+            <p>ZipNest creates standard <strong>.zip</strong> files that open everywhere. It extracts .zip archives using Deflate, BZip2, LZMA and Zstandard compression, including AES- and ZipCrypto-encrypted archives.</p>
+          </details>
+          <details>
+            <summary>How big can files be?</summary>
+            <p>There's no practical limit. ZipNest uses Zip64 for files over 4 GB and streams data, so it doesn't need to load files into memory.</p>
+          </details>
+          <details>
+            <summary>What exactly gets skipped when I zip a project?</summary>
+            <p>With the default settings: anything matched by your <code>.gitignore</code>, plus <code>.git</code>, <code>node_modules</code>, <code>__pycache__</code>, <code>.venv</code>, <code>.next</code>, <code>.DS_Store</code> and similar folders. You can turn each filter off before zipping.</p>
+          </details>
+          <details>
+            <summary>Why does my computer warn me when installing?</summary>
+            <p>Windows and macOS show a warning for apps that aren't signed with a paid developer certificate. ZipNest is safe to run, and you can confirm your download is genuine with the SHA-256 checksums above.</p>
+          </details>
+          <details>
+            <summary>I forgot the password to my archive. Can you recover it?</summary>
+            <p>No. AES-256 encryption is designed so that nobody, including us, can open the archive without the password. Keep it in a password manager.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="wrap final-inner">
+          <img src="/assets/logo.svg" width="56" height="56" alt="" />
+          <h2>Pack it. Nest it. Done.</h2>
+          <a class="btn btn-primary btn-large js-primary-download" href="#download">
+            <span class="js-os-icon" aria-hidden="true"></span>
+            <span class="js-primary-label">Download ZipNest</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="brand small">
+          <img src="/assets/logo.svg" width="22" height="22" alt="" />
+          <span>ZipNest</span>
+        </div>
+        <p class="muted">© <span class="js-year">2026</span> ZipNest Contributors · MIT License · This site uses no cookies and no trackers.</p>
+        <nav aria-label="Footer">
+          <a class="js-repo-link" href="https://github.com/" rel="noopener noreferrer">GitHub</a>
+          <a class="js-issues-link" href="https://github.com/" rel="noopener noreferrer">Report an issue</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
