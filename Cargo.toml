@@ -6,7 +6,7 @@ members = ["crates/zipnest-core", "app/src-tauri"]
 version = "1.0.0"
 edition = "2021"
 license = "MIT"
-authors = ["Harsh Satbhai <https://github.com/harshsatbhai>"]
+authors = ["Harshwardhan Satbhai <https://github.com/harshsatbhai>"]
 
 [profile.release]
 codegen-units = 1

@@ -135,4 +135,4 @@ Unsigned builds work, but Windows SmartScreen and macOS Gatekeeper show a warnin
 
 ## License
 
-MIT © 2026 [Harsh Satbhai](https://github.com/harshsatbhai). Created by Harsh Satbhai.
+MIT © 2026 [Harshwardhan Satbhai](https://github.com/harshsatbhai). Created by Harshwardhan Satbhai.
